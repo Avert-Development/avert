@@ -7,6 +7,8 @@ const config = require('./config.json');
 
 // Require dicord.js module
 const Discord = require('discord.js');
+// Require fs moduke
+const fs = require('fs');
 // Create a new discord client
 const client = new Discord.Client();
 
