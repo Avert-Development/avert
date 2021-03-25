@@ -46,6 +46,8 @@ function findUrls( text )
 
 client.on('message', message => {
     if(message.author.bot) return;
+    else if (message.content.includes('https://tenor.com')) return;
+    else if (message.content.includes('https://media.discordapp.net')) return;
     else if (message.content.includes('https://')) {
         message.channel.send('Link detected! Beginning Scan...');
         var messageLink = (findUrls(message.content))
