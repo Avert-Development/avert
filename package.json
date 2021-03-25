@@ -1,0 +1,25 @@
+{
+  "name": "avert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/missgorl/avert.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/missgorl/avert/issues"
+  },
+  "homepage": "https://github.com/missgorl/avert#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.22.0",
+    "jquery": "^3.6.0"
+  }
+}
