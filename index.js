@@ -2,6 +2,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+//Fetch config
+const fetch = require('node-fetch');
+
 // Config.json
 const config = require('./config.json');
 
