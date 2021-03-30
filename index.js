@@ -1,7 +1,7 @@
 "use strict";
 
 // Define API key
-const APIKEY = process.env.APIKEY
+var APIKEY = process.env.APIKEY
 
 
 // Dotenv Config
@@ -54,6 +54,7 @@ function findUrls( text )
 //Embed function
 
 function embed(data, channel) {
+    console.log(data)
     const exampleEmbed = new Discord.MessageEmbed()
     .setColor('#5863f8')
     .setTitle('URL Report')
@@ -80,11 +81,12 @@ client.on('message', message => {
         message.channel.send('Link detected! Beginning Scan...');
         var messageLink = (findUrls(message.content))
         
+        // This is the submit fetch
         fetch("https://urlscan.io/api/v1/scan/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "API-Key": `${APIKEY}`
+                "API-Key": process.env.APIKEY
             },
             body: JSON.stringify({
                 url: `${messageLink}`,
@@ -92,11 +94,20 @@ client.on('message', message => {
             })
         }).then(response => response.json()).then((data) => {
             message.channel.send('URL submitted!')
+            console.log('Submission fetch successful', data)
 
-            message.channel.send('Retrieving scan data...')
+            message.channel.send('Retrieving scan data, click at your own risk...')
 
+            // This is the response fetch
             setTimeout(function() {
-                fetch(`https://urlscan.io/api/v1/result/${data.uuid}/`).then(response => response.json()).then(data => embed(data, message.channel))
+                fetch(`https://urlscan.io/api/v1/result/${data.uuid}/`).then(response => response.json()).then(data => {
+                if (data.status == 404) {
+                    message.channel.send(`The page wasn't found. This may be an error on our side, you can retry if you wish`)
+                } else {
+                embed(data, message.channel)
+                }
+                })
+                console.log('Result fetch successful')
             }, 20000);
 
     
