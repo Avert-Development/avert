@@ -1,7 +1,5 @@
 "use strict";
 
-//
-
 // Define API key
 var APIKEY = process.env.APIKEY
 
