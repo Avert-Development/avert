@@ -63,6 +63,7 @@ function embed(data, channel) {
     .addFields(
         
         { name: 'Maliciousness score: (0-100) (lower is safer)', value: `${data.verdicts.urlscan.score}` }
+        { name: `Website screenshot:`, value: `The website may be in a foreign language due to server locations, this will most likely not be the case if you visit the site.`}
     )
     .setImage(`https://urlscan.io/screenshots/${data.task.uuid}.png`)
     .setTimestamp()
